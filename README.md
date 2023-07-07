@@ -1,4 +1,4 @@
-# Aplicação de Gerenciamento de Usuários
+# Aplicação de Gerenciamento de Usuários (Api back-end)
 
 ## Descrição
 
