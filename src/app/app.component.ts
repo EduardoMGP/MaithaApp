@@ -1,10 +1,30 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivationEnd, Router} from "@angular/router";
+import {filter} from "rxjs";
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './app.component.html'
 })
-export class AppComponent {
-  title = 'Maitha';
+export class AppComponent implements OnInit {
+  layout: string = 'auth';
+
+  constructor(private router: Router) {
+
+  }
+
+  ngOnInit(): void {
+
+    this.router.events
+      .pipe(filter(event => event instanceof ActivationEnd))
+      .subscribe(value => {
+        if (value instanceof ActivationEnd) {
+          if (value.snapshot.routeConfig?.path === 'login' || value.snapshot.routeConfig?.path === 'register') {
+            this.layout = 'auth';
+          } else {
+            this.layout = 'default';
+          }
+        }
+      });
+  }
 }

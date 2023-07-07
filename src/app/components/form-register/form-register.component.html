@@ -1,0 +1,51 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <input type="text" name="name" id="name" placeholder="Nome" formControlName="name">
+    <div class="error" *ngIf="form.get('name').invalid && form.get('name').touched">
+        <span *ngIf="form.controls['name'].hasError('minlength') && form.controls['name'].touched">
+            O nome deve ter no mínimo 3 caracteres
+        </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input type="email" name="email" id="email" placeholder="E-Mail" formControlName="email">
+    <div class="error" *ngIf="form.get('email').invalid && form.get('email').touched">
+        <span *ngIf="form.controls['email'].hasError('email') && form.controls['email'].touched">
+            E-mail inválido
+        </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="password">
+      <input type="password" id="password" placeholder="Senha" formControlName="password" #passwordInput>
+      <fa-icon [icon]="faEye" *ngIf="showPassword" (click)="showHidePassword()"></fa-icon>
+      <fa-icon [icon]="faEyeSlash" *ngIf="!showPassword" (click)="showHidePassword()"></fa-icon>
+    </label>
+    <div class="error">
+      <span *ngIf="form.controls['password'].hasError('minlength') && form.controls['password'].touched">
+            A senha deve ter no mínimo 6 caracteres
+          </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="password">
+      <input type="password" id="password_confirmation" placeholder="Repetia sua senha"
+             formControlName="password_confirmation" #passwordConfirmationInput>
+      <fa-icon [icon]="faEye" *ngIf="showPasswordConfirmation" (click)="showHidePasswordConfirmation()"></fa-icon>
+      <fa-icon [icon]="faEyeSlash" *ngIf="!showPasswordConfirmation" (click)="showHidePasswordConfirmation()"></fa-icon>
+    </label>
+    <div class="error">
+      <span
+        *ngIf="form.errors && form.errors['notSame'] && form.controls['password_confirmation'].touched">
+            As senhas não conferem
+          </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" [disabled]="form.invalid || blocked">Cadastrar</button>
+  </div>
+
+</form>

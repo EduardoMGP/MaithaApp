@@ -1,0 +1,29 @@
+<section class="user-table">
+  <button (click)="create()" class="create"> <fa-icon [icon]="faPlus"></fa-icon> Criar novo usuário</button>
+  <nz-table
+    #usersTable
+    nzShowPagination
+    nzShowSizeChanger
+    [nzData]="users">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Address</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user_ of usersTable.data">
+      <td>{{user_.name}}</td>
+      <td>{{user_.email}}</td>
+      <td>{{user_.created_at}}</td>
+      <td>
+        <a (click)="edit(user_.id)" class="edit"> <fa-icon [icon]="faEdit"></fa-icon> Editar</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a *ngIf="user?.id != user_.id" (click)="delete(user_.id)" class="delete"> <fa-icon [icon]="faTrash"></fa-icon> Deletar</a>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</section>

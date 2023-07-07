@@ -1,0 +1,33 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+
+  <div class="form-group">
+    <input type="email" name="email" id="email" placeholder="E-Mail" formControlName="email">
+    <div class="error">
+          <span *ngIf="loginForm.controls['email'].hasError('required') && loginForm.controls['email'].touched">
+            Campo obrigatório
+          </span>
+      <span *ngIf="loginForm.controls['email'].hasError('email') && loginForm.controls['email'].touched">
+            E-Mail inválido
+          </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="password">
+      <input type="password" id="password" placeholder="Senha" formControlName="password" #passwordInput>
+      <fa-icon [icon]="faEye" *ngIf="showPassword" (click)="showHidePassword()"></fa-icon>
+      <fa-icon [icon]="faEyeSlash" *ngIf="!showPassword" (click)="showHidePassword()"></fa-icon>
+    </label>
+    <div class="error">
+          <span *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">
+            Campo obrigatório
+          </span>
+      <span *ngIf="loginForm.controls['password'].hasError('minlength') && loginForm.controls['password'].touched">
+            A senha deve ter no mínimo 6 caracteres
+          </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" [disabled]="loginForm.invalid || blocked">Entrar</button>
+  </div>
+
+</form>

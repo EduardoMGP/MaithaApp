@@ -1,0 +1,18 @@
+.user-table {
+  height: 100%;
+  overflow: auto;
+
+  table {
+    height: 50% !important;
+  }
+}
+
+.create {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #262626;
+  color: white;
+  font-weight: bold;
+}
