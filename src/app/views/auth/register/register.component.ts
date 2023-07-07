@@ -1,4 +1,4 @@
-import {Component, Inject, Input} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {Notyf} from "notyf";
 import {Router} from "@angular/router";
@@ -15,7 +15,7 @@ import {ApiService} from "../../../services/api.service";
 export class RegisterComponent {
 
   @Input() redirect: boolean = true;
-  @Input() refresh: boolean = false;
+  @Output() createUser: EventEmitter<any> = new EventEmitter<any>();
   public blocked = false;
   public validations: any;
 
@@ -38,9 +38,8 @@ export class RegisterComponent {
             setTimeout(() => {
               this.router.navigate(['/login']);
             }, 100);
-          } else if(this.refresh) {
-            window.location.reload();
           }
+          this.createUser.emit(value.data.data);
         } else {
           if (value.data.data) {
             let data: any = value.data.data;

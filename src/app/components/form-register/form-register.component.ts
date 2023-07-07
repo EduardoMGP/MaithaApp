@@ -13,6 +13,7 @@ export class FormRegisterComponent implements OnInit, OnChanges {
   @Input() user!: User;
   @Input() validations: any;
   @Input() blocked: boolean = false;
+  @Input() btnText: string = "Cadastrar";
   @Output() submit: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild('passwordInput') passwordInput: any;
   @ViewChild('passwordConfirmationInput') passwordConfirmationInput: any;
@@ -28,6 +29,7 @@ export class FormRegisterComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
   }
+
   ngOnInit() {
     if (this.validations) {
       this.form = this.formBuilder.group(this.validations);

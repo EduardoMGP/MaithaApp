@@ -62,6 +62,16 @@ export class UsersComponent implements OnInit {
         nzFooter: []
       }
     );
+
+    modal.componentInstance?.editUser.subscribe((user: User) => {
+      modal.close();
+      this.users = this.users.map(userMap => {
+        if (userMap.id === user.id) {
+          return user;
+        }
+        return userMap;
+      });
+    });
   }
 
   create() {
@@ -72,5 +82,12 @@ export class UsersComponent implements OnInit {
         nzFooter: []
       }
     );
+
+    modal.componentInstance?.createUser.subscribe((user: User) => {
+      modal.close();
+      this.users.push(user);
+      // @ts-ignore
+      this.usersTable.data.push(user);
+    });
   }
 }

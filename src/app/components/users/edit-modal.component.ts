@@ -1,4 +1,4 @@
-import {Component, Inject, Input} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
 import {Validators} from "@angular/forms";
 import {ApiService} from "../../services/api.service";
 import {Notyf} from "notyf";
@@ -7,12 +7,13 @@ import {NOTYF} from "../../app.module";
 @Component({
   selector: 'app-edit-users',
   template:
-    '<app-form-register [validations]="validations" [user]="user" [blocked]="blocked" (submit)="onSubmit($event)">' +
+    '<app-form-register [validations]="validations" [user]="user" [blocked]="blocked" (submit)="onSubmit($event)" [btnText]="\'Editar\'">' +
     '</app-form-register>'
 })
 export class EditModalComponent {
 
   @Input() user: any;
+  @Output() editUser: EventEmitter<any> = new EventEmitter<any>();
   public validations: any;
   public blocked = false;
 
@@ -51,9 +52,7 @@ export class EditModalComponent {
         ApiService.editUser(user).then(value => {
           if (value.data.success) {
             this.notyf.success(value.data.message);
-            setTimeout(() => {
-              window.location.reload();
-            }, 100);
+            this.editUser.emit(value.data.data);
           } else {
             this.notyf.error(value.data.message);
           }
