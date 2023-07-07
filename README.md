@@ -1,27 +1,54 @@
-# Maitha
+# Aplicação de Gerenciamento de Usuários
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.2.
+## Descrição
 
-## Development server
+Esta é uma aplicação simples desenvolvida utilizando Angular 16 e Laravel 10. O objetivo principal é permitir o gerenciamento de usuários em um sistema. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+###  Links úteis
+Visualize a api laravel no repositório abaixo  
+https://github.com/EduardoMGP/MaithaApi
 
-## Code scaffolding
+Uma versão hospedada (demo) dessa aplicação está disponível em   
+https://maitha.uaibits.com.br
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Visualize a documentação completa da API no link abaixo  
+https://documenter.getpostman.com/view/8500239/2s93zGzyFt#4b37de47-297f-4ba9-bb7f-a679379bd0ad
 
-## Build
+### Confira abaixo algumas informações importantes sobre o sistema.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Rotas da API
 
-## Running unit tests
+- Autenticação:
+  - `POST` https://maitha.api.uaibits.com.br/api/auth/login
+  - `POST` https://maitha.api.uaibits.com.br/api/auth/register
+  - `POST` https://maitha.api.uaibits.com.br/api/auth/logout
+  - `POST` https://maitha.api.uaibits.com.br/api/auth/logout-all
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Usuários:
+  - `GET` https://maitha.api.uaibits.com.br/api/users
+  - `POST` https://maitha.api.uaibits.com.br/api/users
+  - `GET` https://maitha.api.uaibits.com.br/api/users/{user}
+  - `PUT` https://maitha.api.uaibits.com.br/api/users/{user}
+  - `DELETE` https://maitha.api.uaibits.com.br/api/users/{user}
 
-## Running end-to-end tests
+## Metas do Sistema
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Back-End (API)
 
-## Further help
+Algumas metas para melhorar o sistema no lado do servidor incluem:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Aumentar a segurança implementando tokens mais elaborados e utilizando o "refresh_token" para renovar as sessões, proporcionando maior proteção.
+- Adicionar níveis de permissões para restringir as operações apenas a usuários autorizados, garantindo a segurança e controle adequados.
+- Introduzir novas funcionalidades, como permitir que os usuários gerenciem os dispositivos conectados às suas contas, aumentando a flexibilidade e controle do sistema.
+
+### Aplicação Web
+
+Algumas melhorias planejadas para a aplicação web incluem:
+
+- Aprimorar o layout, tornando-o mais fluido e funcional para os usuários, proporcionando uma experiência agradável.
+- Resolver problemas de responsividade em dispositivos móveis, garantindo que a aplicação seja utilizável em diferentes tamanhos de tela.
+- Melhorar a usabilidade ao cadastrar um novo usuário pelo painel, evitando atualizações completas da página e atualizando apenas os dados relevantes na tabela, tornando o processo mais eficiente e intuitivo.
+- Otimizar a folha de estilos do template, removendo estilos duplicados e melhorando o desempenho da aplicação.
+- Componentizar a aplicação de forma mais eficiente, reutilizando código e evitando a repetição desnecessária de lógica, o que facilitará a manutenção e expansão futuras.
+
+---
