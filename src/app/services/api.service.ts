@@ -9,7 +9,7 @@ import {Notyf} from "notyf";
 })
 export class ApiService {
 
-  private static apiUrl: string = 'https://maitha.uaibits.com.br/api/';
+  private static apiUrl: string = 'https://maitha.api.uaibits.com.br/api/';
   @Inject(NOTYF) private static notyf: Notyf = new Notyf();
 
   public static setToken(token: string, expire_at: Date): void {
