@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivationEnd, Router} from "@angular/router";
 import {filter} from "rxjs";
+import {ApiService} from "./services/api.service";
 
 @Component({
   selector: 'app-root',
@@ -10,11 +11,11 @@ export class AppComponent implements OnInit {
   layout: string = 'auth';
 
   constructor(private router: Router) {
-
+    ApiService.validateToken()
+      .catch(() => window.location.href = '/login');
   }
 
   ngOnInit(): void {
-
     this.router.events
       .pipe(filter(event => event instanceof ActivationEnd))
       .subscribe(value => {

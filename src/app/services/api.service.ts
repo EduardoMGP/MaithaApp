@@ -23,7 +23,8 @@ export class ApiService {
   }
 
   public static checkToken(): boolean {
-    return !!this.getToken();
+    return this.getToken() !== null;
+
   }
 
   public static deleteToken(): void {
@@ -114,5 +115,25 @@ export class ApiService {
     //     }
     //   }
     // })
+  }
+
+  static validateToken() {
+    return new Promise(async (resolve, reject) => {
+      if (ApiService.checkToken()) {
+        await ApiService.post('auth/me')
+          .then(response => {
+            if (response.data.success) {
+              localStorage.setItem('user', JSON.stringify(response.data.data));
+              resolve(response);
+            } else {
+              reject(response);
+            }
+          })
+          .catch(reason => {
+            ApiService.catch(reason);
+            reject(reason);
+          });
+      }
+    });
   }
 }

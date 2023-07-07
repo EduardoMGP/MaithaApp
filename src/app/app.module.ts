@@ -27,6 +27,7 @@ import {NzTableModule} from "ng-zorro-antd/table";
 import {FormRegisterComponent} from "./components/form-register/form-register.component";
 import {EditModalComponent} from "./components/users/edit-modal.component";
 import {CreateModalComponent} from "./components/users/create-modal.component";
+import {AuthService} from "./guards/auth.guard";
 
 registerLocaleData(en);
 
@@ -60,6 +61,7 @@ export const NOTYF = new InjectionToken<Notyf>('NotyfToken');
     NzTableModule
   ],
   providers: [
+    AuthService,
     {
       provide: NOTYF, useFactory: () => new Notyf({
         duration: 5000
