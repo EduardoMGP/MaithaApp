@@ -7,14 +7,16 @@
     [nzData]="users">
     <thead>
     <tr>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Address</th>
-      <th>Action</th>
+      <th>#</th>
+      <th>Nome</th>
+      <th>E-mail</th>
+      <th>Data do cadastro</th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let user_ of usersTable.data">
+      <td>{{user_.id}}</td>
       <td>{{user_.name}}</td>
       <td>{{user_.email}}</td>
       <td>{{user_.created_at}}</td>
