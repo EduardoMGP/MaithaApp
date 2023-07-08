@@ -14,6 +14,9 @@
         <span *ngIf="form.controls['email'].hasError('email') && form.controls['email'].touched">
             E-mail inválido
         </span>
+      <span *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched">
+            O e-mail é obrigatório
+       </span>
     </div>
   </div>
   <div class="form-group">
@@ -24,8 +27,11 @@
     </label>
     <div class="error">
       <span *ngIf="form.controls['password'].hasError('minlength') && form.controls['password'].touched">
-            A senha deve ter no mínimo 6 caracteres
-          </span>
+            A senha deve ter no mínimo 8 caracteres
+      </span>
+      <span *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched">
+            A senha é obrigatória
+      </span>
     </div>
   </div>
 
@@ -37,10 +43,9 @@
       <fa-icon [icon]="faEyeSlash" *ngIf="!showPasswordConfirmation" (click)="showHidePasswordConfirmation()"></fa-icon>
     </label>
     <div class="error">
-      <span
-        *ngIf="form.errors && form.errors['notSame'] && form.controls['password_confirmation'].touched">
+        <span *ngIf="form.errors && form.errors['notSame'] && form.controls['password_confirmation'].touched">
             As senhas não conferem
-          </span>
+        </span>
     </div>
   </div>
 
